@@ -11,15 +11,14 @@ const app = express()
 
 const PORT = 4000 || process.env.PORT
 
-const corsConfig = {
-    origin:'*',
-    Credential : '',
-    methods : ['GET','POST','PUT','DELETE']
-}
 
-app.use(cors(corsConfig))
-app.options("",cors(corsConfig))
-
+// middlewares
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
+    credentials: true
+  }));
 app.use(express.json())
 
 
