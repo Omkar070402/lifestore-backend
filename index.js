@@ -11,8 +11,17 @@ const app = express()
 
 const PORT = 4000 || process.env.PORT
 
+const corsConfig = {
+    origin:'*',
+    Credential : '',
+    methods : ['GET','POST','PUT','DELETE']
+}
+
+app.use(cors(corsConfig))
+
 app.use(cors())
 app.use(express.json())
+
 
 
 
