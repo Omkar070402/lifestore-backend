@@ -1,22 +1,7 @@
-import multer from 'multer'
-import fs from 'fs'
+import multer from 'multer';
 
-const path = './uploads'
+const storage = multer.memoryStorage(); // Store files in memory instead of disk
 
-if(!fs.existsSync(path)){
-    fs.mkdirSync(path)
-}
+const upload = multer({ storage });
 
-const storage = multer.diskStorage({
-    destination : function(req,file,cb){
-        cb(null,'uploads')
-    },
-    filename : function(req,file,cb){
-        const uniqueSuffix = Date.now() + '-' + Math.random(Math.random()*1e9)
-        cb(null,uniqueSuffix + file.originalname)
-    }
-})
-
-const upload = multer({storage : storage})
-
-export default upload
+export default upload;
